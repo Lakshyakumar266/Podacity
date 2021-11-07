@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block title %}{{params.website_name}} - Edit Podcast{% endblock title %}
+
+<!-- Header -->
+{% block header %}
+<div class="site-blocks-cover overlay" style="background-image: url('/static/images/hero_bg_5.jpg')" data-aos="fade"
+    data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+                <h2 class="text-white font-weight-light mb-2 display-4">Editing ‘ {{ podcast.title[0:20] }}... ’</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock header %}
+<!-- For SEO  -->
+{% block head %}<meta name="robots" content="noindex, follow">{% endblock head %}
+
+<!-- Body -->
+{% block body %}
+<div class="container my-4 w-75">
+    <h2>Edit Podcast</h2>
+    <h5 class="bold mt-4">Podcast Options:</h5>
+    <form action="/podcaster_admin/edit/{{podcast.sno}}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" maxlength="100" class="form-control" value="{{podcast.title}}" />
+        </div>
+        <div class="form-group">
+            <label for="shortDec">Short Description</label>
+            <input type="text" maxlength="200" name="shortDec" class="form-control" value="{{podcast.short_intro}}" />
+        </div>
+        <div class="form-group">
+            <label for="pageDsn">Design Page</label>
+            <textarea name="pageDsn" class="Mytiny">{{podcast.intro}}</textarea>
+        </div>
+        <div class="d-flex justify-content-end my-3">
+            <button type="submit" class="btn btn-primary mx-2">Update
+                Podcast</button>
+            <a href="/podcaster_admin/delete/{{podcast.username}}/{{podcast.sno}}" class="btn btn-dark mx-2">Delete</a>
+        </div>
+    </form>
+
+</div>
+{% endblock body %}

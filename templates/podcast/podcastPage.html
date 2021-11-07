@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block title %}{{params.website_name}} &mdash; View All Podcasts{% endblock title %}
+
+{% block header %}
+<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(/static/images/hero_bg_7.jpg)"
+    data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="400">
+                <h2 class="text-white font-weight-light mb-2 display-4">Podcasts</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock header %}
+
+{% block body %}
+<div class="container">
+    <div class="site-section mb-5">
+
+        <div class="row mb-5" data-aos="fade-up">
+            <div class="col-md-12 text-center">
+                <h2 class="font-weight-bold text-black">Podcasts</h2>
+            </div>
+        </div>
+        {% for podcast in podcasts %}
+        <div class="d-block d-md-flex podcast-entry bg-white mb-5 shadow-lg" data-aos="fade-up">
+            <div class="image" style="background-image: url('/static/images/thumbnails/{{podcast.thumbnail}}')"></div>
+            <div class="text">
+
+                <h3 class="font-weight-light"><a class="text-warp"
+                        href="/podcast/{{podcast.username}}/{{podcast.sno}}">{{podcast.title}}</a></h3>
+                <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By {{podcast.username}} <span
+                                class="sep">/</span>
+                            {{ moment(podcast.datetime).format('Do MMMM YYYY') }} <span class="sep">/</span>
+                            {{ moment(podcast.datetime).format('hh:mm A') }} </small></span></div>
+                <p class="mb-4 text-warp">{{podcast.short_intro}}</p>
+
+                <div class="player">
+                    <audio id="player2" preload="none" controls style="max-width: 100%">
+                        <source src="/static/audio/podcasts/{{podcast.audio_file}}">
+                    </audio>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="paginations">
+            <a id="prev" href="{{prev}}" class="btn btn-primary text-light">← Previous </a>
+            <a id="next" href="{{next}}" class="btn btn-primary float-right text-light">Next →</a>
+        </div>
+        <script>var prev = document.getElementById('prev'); var next = document.getElementById('next'); if (prev.getAttribute("href") == '#') { prev.classList.add('disabled') } else if (next.getAttribute("href") == '#') { next.classList.add('disabled') }</script>
+    </div>
+</div>
+{% endblock body %}

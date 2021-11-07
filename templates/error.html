@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block title %}{{ params.website_name }} - Error{% endblock title %}
+{% block head %}<meta name="robots" content="noindex, follow">{% endblock head %}
+
+{% block body %}
+<div class="d-flex bg-dark" style="min-height: 100vh;">
+    <div class="container mt-5 mb-5 m-auto text-light text-center">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-dark">
+                <h1 class="display-4">Error</h1>
+                <p class="lead">404 - Page Not Found</p>
+                <p class="lead font-weight-bold">The Page You Are Looking For Is Not Avalable On Site.</p>
+                <p class="lead"><a href="/"> <i class="fa fa-home"></i> Go Home </a> </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,22 @@
+{
+    "params": {
+        "website_name": "PodaCity",
+        "website_tagline": "Its You's Podcast",
+        "slogan": "Not Just Nearly Podcast , But It's Really PodaCity",
+        "creater": "lakshya kuamr",
+        "version": "1.0.1",
+        "website_url": "http://127.0.0.1:2000/",
+        "lical_uri": "mysql://root:@localhost/podacity",
+        "Prod_uri": "mysql://root:@localhost/podacity",
+        "production_sql": "False",
+        "user_gmail": "lakshyakumar0098@gmail.com",
+        "user_gmail_pass": "Lakshyakumarpersnol",
+        "max_page_view_value": 6,
+        "max_rec_page": 4,
+        "admin_username": "adminUsr",
+        "admin_password": "adminUsr",
+        "profile_pic_upload_location": "D:\\Vs code\\Python\\Python Flask\\Flask Projects\\PodaCity\\static\\images\\profile_pic",
+        "thumbnail_upload_location": "D:\\Vs code\\Python\\Python Flask\\Flask Projects\\PodaCity\\static\\images\\thumbnails",
+        "podcast_upload_location": "D:\\Vs code\\Python\\Python Flask\\Flask Projects\\PodaCity\\static\\audio\\podcasts"
+    }
+}

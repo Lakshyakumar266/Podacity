@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+{% block title %}{{params.website_name}} - {{podcast.title}}{% endblock title %}
+
+{% block head %}<meta name="description" content="{{podcast.short_intro}}">{% endblock head %}
+
+{% block header %}
+<div class="site-blocks-cover overlay inner-page-cover"
+  style="background-image: url(/static/images/thumbnails/{{podcast.thumbnail}});" data-aos="fade"
+  data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row align-items-center justify-content-center text-center">
+      <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+        <h2 class="text-white font-weight-light mb-2 display-4">{{podcast.title}}</h2>
+        <div class="text-white mb-3"><span class="text-white-opacity-05"><small>By {{creator.username}} <span
+                class="sep">/</span>
+              {{ moment(podcast.datetime).format('Do MMMM YYYY') }} <span class="sep">/</span> {{
+              moment(podcast.datetime).format('hh:mm A') }}</small></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock header %}
+
+
+{% block body %}
+<style>
+  #MyDivContent img {
+    max-width: 90vw;
+  }
+</style>
+<div class="container site-section">
+
+  <div class="player mb-5">
+    <audio id="player2" preload="none" controls style="max-width: 100%">
+      <source src="/static/audio/podcasts/{{podcast.audio_file|safe}}">
+    </audio>
+  </div>
+
+  <style>
+    #MyDivContent,
+    #MyDivContent td {
+      color: transparent;
+      user-select: none;
+    }
+
+    #MyDivContent *,
+    #MyDivContent td p {
+      color: #212529;
+      user-select: text;
+    }
+  </style>
+  <div class="mx-0">
+    <div id="MyDivContent"
+      class="container d-flex flex-column justify-content-center align-items-center align-self-center text-center">
+      {{podcast.intro|safe}}
+    </div>
+  </div>
+
+  <b class="font-weight-bold text-right">
+    <blockquote class="blockquote">
+      <footer class="blockquote-footer">Posted By, <cite title="{{creator.username}}">{{creator.username}}</cite>
+      </footer>
+    </blockquote>
+  </b>
+</div>
+
+<div class="site-section bg-light">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-12 text-center">
+        <h2 class="font-weight-bold text-black">Related Podcasts</h2>
+      </div>
+    </div>
+    <div class="row">
+      {% for Recent_Podcast in RecPodcast %}
+      <div class="col-md-6">
+        <div class="d-block podcast-entry bg-white mb-5" data-aos="fade-up">
+          <div class="image w-100"
+            style="height: 300px; background-image: url('/static/images/thumbnails/{{Recent_Podcast.thumbnail}}');">
+          </div>
+          <div class="text w-100">
+
+            <h3 class="font-weight-light"><a
+                href="/podcast/{{creator.username}}/{{Recent_Podcast.sno}}">{{Recent_Podcast.title}}</a></h3>
+            <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By {{creator.username}} <span
+                    class="sep">/</span> {{ moment(Recent_Podcast.datetime).format('Do MMMM YYYY') }}<span
+                    class="sep">/</span> {{ moment(Recent_Podcast.datetime).format('hh:mm A') }}
+                </small></span></div>
+            <p class="mb-4">{{Recent_Podcast.short_intro}}</p>
+
+
+            <div class="player">
+              <audio id="player2" preload="none" controls style="max-width: 100%">
+                <source src="/static/audio/podcasts/{{Recent_Podcast.audio_file}}">
+              </audio>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock body %}

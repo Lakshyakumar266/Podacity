@@ -1,0 +1,137 @@
+{% extends 'layout.html' %}
+{% block title %}{{ params.website_name }} &mdash; {{ params.website_tagline }}{% endblock title %}
+
+
+{% block header %}
+<div class="site-blocks-cover overlay" style="background-image: url('/static/images/hero_bg_1.jpg')" data-aos="fade"
+  data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row align-items-center justify-content-center text-center">
+
+      <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+        <h2 class="text-white font-weight-light mb-2 display-4">{{ params.slogan }}
+        </h2>
+        <div class="text-white mb-4"><span class="text-white-opacity-05"><small>By {{ params.creater }} | 1st October
+              2021 | 1:30:20</small></span></div>
+        <p><a href="/" class="btn btn-primary btn-sm py-3 px-4 small">Start Listning Now</a></p>
+
+        <div class="player">
+          <audio id="player2" preload="none" controls="true" style="max-width: 100%">
+            <source src="/static/audio/Theam-Music.mp3">
+          </audio>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock header %}
+
+{% block body %}
+<div class="site-section bg-light">
+  <div class="container">
+
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-md-12 text-center">
+        <h2 class="font-weight-bold text-black">Recent Podcasts</h2>
+      </div>
+    </div>
+    {% for podcast in podcasts %}
+    <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+      <div class="image" style="background-image: url('/static/images/thumbnails/{{podcast.thumbnail}}')"></div>
+      <div class="text">
+
+        <h3 class="font-weight-light"><a href="/podcast/{{podcast.username}}/{{podcast.sno}}">{{podcast.title}}</a></h3>
+        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By {{podcast.username}} <span class="sep">/</span>
+            {{ moment(podcast.datetime).format('Do MMMM YYYY') }} <span class="sep">/</span> 
+            {{ moment(podcast.datetime).format('hh:mm A') }} </small></span></div>
+        <p class="mb-4">{{podcast.short_intro}}</p>
+
+        <div class="player">
+          <audio id="player2" preload="none" controls style="max-width: 100%">
+            <source
+              src="/static/audio/podcasts/{{podcast.audio_file}}">
+          </audio>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-center">
+      <a href="/podcasts" class="btn btn-primary btn-lg btn-block">Load More</a>
+    </div>
+
+  </div>
+
+  <div class="site-section">
+    <div class="container" data-aos="fade-up">
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <h2 class="font-weight-bold text-black">Behind The Mic</h2>
+        </div>
+      </div>
+      <div class="row">
+        {% for profile in profils %}
+
+        <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+          <div class="team-member">
+
+            <img src="/static/images/profile_pic/{{profile.profile_pic}}" alt="Image" class="img-fluid"
+              style="width: 300px; height: 400px;">
+
+            <div class="text">
+
+              <h2 class="mb-2 font-weight-light h4">{{ profile.first_name}} {{profile.last_name}}</h2>
+              <span class="d-block mb-2 text-white-opacity-05">Podcast Creator</span>
+              <p class="mb-4">
+                {% if profile.describe|length >= 120 %}
+                {{profile.describe[0:120]}}...
+                {% else %}
+                {{profile.describe}}
+                {% endif %}
+              </p>
+              <p>
+                <a href="#" class="text-white p-2"><span class="icon-facebook"></span></a>
+                <a href="#" class="text-white p-2"><span class="icon-twitter"></span></a>
+                <a href="#" class="text-white p-2"><span class="icon-linkedin"></span></a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section bg-light block-13">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <h2 class="font-weight-bold text-black">Featured Creators</h2>
+        </div>
+      </div>
+      <div class="nonloop-block-13 owl-carousel">
+        {% for populars in popcre %}
+        <div class="text-center p-3 p-md-5 bg-white">
+          <div class="mb-4">
+            <img src="/static/images/profile_pic/{{populars.profile_pic}}" alt="Image"
+              class="w-50 mx-auto rounded-circle" style="width: 100px!important; height: 100px;">
+          </div>
+          <div class="">
+            <h3 class="font-weight-light h5">{{populars.username}}</h3>
+            <p>
+              {% if populars.describe|length >= 120 %}
+              {{populars.describe[0:120]}}...
+              {% else %}
+              {{populars.describe}}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endblock body %}
