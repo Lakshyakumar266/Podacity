@@ -35,7 +35,7 @@ app.config['PODCAST_UPLOAD_FOLDER'] = params['podcast_upload_location']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 local_server = True
 if(local_server):
-    app.config['SQLALCHEMY_DATABASE_URI'] = params['lical_uri']
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
     warnings.warn(
         'SQL: Working On Local URI!.', stacklevel=2)
 else:

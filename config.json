@@ -6,7 +6,7 @@
         "creater": "lakshya kuamr",
         "version": "1.0.1",
         "website_url": "http://127.0.0.1:2000/",
-        "lical_uri": "mysql://root:@localhost/podacity",
+        "local_uri": "mysql://root:@localhost/podacity",
         "Prod_uri": "mysql://root:@localhost/podacity",
         "production_sql": "False",
         "user_gmail": "yourmail@mail.com",
